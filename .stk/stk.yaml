@@ -1,0 +1,46 @@
+schema-version: v2
+kind: manifest
+spec:
+  type: app
+  plugins:
+    - name: pegasus-studio/go-starting@0.0.1
+      alias: go-starting-1708344277421
+      type: app
+      inputs:
+        project_name: stock-manager
+        description: System to manage internal office's stocks
+      inputs-envs: {}
+      connections:
+        generates: []
+        requires: []
+      links:
+        generates: []
+    - name: local/docker-go-starter@0.0.1
+      alias: docker-go-starter-1708456916129
+      type: app
+      inputs:
+        project_name: stock-manager
+        project-path: 1.21.5
+        project_pot: 5050
+      inputs-envs: {}
+      connections:
+        generates: []
+        requires: []
+      links:
+        generates: []
+    - name: local/docker-go-starter@0.0.1
+      alias: docker-go-starter-1708457194101
+      type: app
+      inputs:
+        project_name: stock-manager
+        project_path: github.com/silastgoes/stock-manager
+        go_version: 1.21.5
+        project_port: 5050
+      inputs-envs: {}
+      connections:
+        generates: []
+        requires: []
+      links:
+        generates: []
+  global-inputs: {}
+  global-computed-inputs: {}

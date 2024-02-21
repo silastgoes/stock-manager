@@ -1,0 +1,26 @@
+FROM golang:1.21.5 as build
+
+WORKDIR go/src/github.com/silastgoes/stock-manager/cmd/stock-manager
+
+COPY build go/src/github.com/silastgoes/stock-manager/build
+COPY cmd go/src/github.com/silastgoes/stock-manager/cmd
+COPY internal go/src/github.com/silastgoes/stock-manager/internal
+COPY pkg go/src/github.com/silastgoes/stock-manager/pkg
+COPY config go/src/github.com/silastgoes/stock-manager/config
+COPY .env go/src/github.com/silastgoes/stock-manager/.env
+COPY build go/src//build
+COPY cmd go/src//cmd
+COPY internal go/src//internal
+COPY pkg go/src//pkg
+COPY config go/src//config
+COPY .env go/src//.env
+
+RUN CGO_ENABLED=0 GOOS=linux go build -a -o stock-manager
+
+FROM gcr.io/distroless/base
+
+COPY --from=build /go/src/stock-manager/stock-manager /stock-manager
+COPY --from=build /go/src/stock-manager/.env /go/src/.env
+
+EXPOSE 5050
+CMD ["stock-manager"]
