@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS batches;
+
+DROP TABLE IF EXISTS items;
+
+DROP TABLE IF EXISTS categories;
